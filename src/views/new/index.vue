@@ -9,6 +9,10 @@
           <i class="icon duoxuan"></i>
           <span class="name">单选题</span>
         </li>
+        <li class="type" @click="handleSelectButton('checkBox')">
+          <i class="icon duoxuan"></i>
+          <span class="name">多选题</span>
+        </li>
         <li class="type" @click="handleSelectButton('answer')">
           <i class="icon duoxuan"></i>
           <span class="name">主观题</span>
@@ -77,7 +81,7 @@ export default {
       this.data.push(item);
     },
     getCurrentNextSort() {
-      return this.data.length + 1;
+      return this.data.length;
     },
     getModelName(item) {
       return `${item.type}Model`;
@@ -108,7 +112,7 @@ export default {
               });
               return true;
             }
-            this.$message.success('创建失败！');
+            this.$message.error('创建失败！');
             return false;
           },
         );

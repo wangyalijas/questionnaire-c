@@ -1,7 +1,7 @@
 import Base from './base';
 
-class Selection extends Base {
-  type = 'Selection';
+class CheckBox extends Base {
+  type = 'CheckBox';
 
   constructor(name = '', options = [{ name: '', sort: 0, isRight: false }]) {
     super(name);
@@ -17,4 +17,4 @@ class Selection extends Base {
   }
 }
 
-export default Selection;
+export default CheckBox;

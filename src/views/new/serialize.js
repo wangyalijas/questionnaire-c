@@ -1,5 +1,6 @@
 import Answer from './classes/answer';
 import Selection from './classes/selection';
+import CheckBox from './classes/checkBox';
 
 export default function (data) {
   const result = {
@@ -14,7 +15,7 @@ export default function (data) {
 
       if (item instanceof Answer) {
         container = result.answers;
-      } else if (item instanceof Selection) {
+      } else if (item instanceof Selection || item instanceof CheckBox) {
         container = result.selections;
       } else {
         throw new Error('Type is not support.');

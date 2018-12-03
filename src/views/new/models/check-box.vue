@@ -1,7 +1,7 @@
 <template>
-  <div class="select">
+  <div class="check-box">
     <div>
-      <span class="title-index">{{fatherIndex}}:单选题</span>
+      <span class="title-index">{{fatherIndex}}:多选题</span>
       <el-input
         v-model="insideValue.name"
         placeholder="请输入题目名称"
@@ -77,7 +77,7 @@ export default {
 
       const { options } = this.insideValue;
       if (options.length === 0) {
-        this.$message('必须增加一个单选答案');
+        this.$message('必须增加一个多选答案');
         // 在这里设置输入框变红的样式
 
         return false;
@@ -85,7 +85,7 @@ export default {
 
       for (let i = 0; i < options.length; i += 1) {
         if (!options[i].name) {
-          this.$message('单选答案不能为空');
+          this.$message.error('多选答案不能为空');
           // 在这里设置输入框变红的样式
 
           return false;
@@ -93,14 +93,7 @@ export default {
       }
 
       if (options.filter(item => item.isRight).length === 0) {
-        this.$message.error('单选题必须一个正确答案');
-        // 在这里设置输入框变红的样式
-
-        return false;
-      }
-
-      if (options.filter(item => item.isRight).length > 1) {
-        this.$message.error('单选题只能有一个正确答案');
+        this.$message.error('多选题至少一个正确答案');
         // 在这里设置输入框变红的样式
 
         return false;
@@ -117,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss">
-  .select {
+  .check-box {
     .el-input {
       display: inline-block;
       margin-bottom: 20px;
@@ -130,7 +123,7 @@ export default {
   }
 </style>
 <style lang="scss" scoped>
-  .select {
+  .check-box {
     padding: 10px;
     border: $--border-base;
     border-radius: 4px;
