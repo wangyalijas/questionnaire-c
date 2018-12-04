@@ -10,7 +10,7 @@ class Base {
   serialize() {
     const result = Object.assign({}, this);
 
-    delete result.type;
+    // delete result.type;
 
     return result;
   }

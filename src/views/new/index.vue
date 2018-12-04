@@ -28,7 +28,10 @@
           <el-form-item label="培训人">
             <el-input v-model="form.author"></el-input>
           </el-form-item>
-          <!--<el-form-item label="日期">-->
+          <el-form-item label="是否是兴趣爱好">
+            <el-checkbox v-model="form.isHobby"></el-checkbox>
+          </el-form-item>
+          <!--<el-form-item label="开始日期">-->
           <!--<el-date-picker-->
           <!--v-model="time"-->
           <!--type="datetimerange"-->
@@ -69,6 +72,7 @@ export default {
       form: {
         name: '',
         author: '',
+        isHobby: false,
       },
       time: [],
       data: [],
