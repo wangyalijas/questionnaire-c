@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+const baseUrl = window.config.baseUrl
 // 请求时的拦截器
 axios.interceptors.request.use(
   config => config,
@@ -55,7 +55,7 @@ const httpServer = (options, data, headers) => {
   const httpDefaultoptions = {
     method: options.method,
     // 请求协议
-    baseURL: 'http://127.0.0.1:3004/',
+    baseURL: baseUrl,
     // baseURL 基础 url 前缀
     url: options.url,
     // 请求的地址

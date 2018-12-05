@@ -28,7 +28,10 @@
           <el-form-item label="培训人">
             <el-input v-model="form.author"></el-input>
           </el-form-item>
-          <el-form-item label="是否是兴趣爱好">
+          <el-form-item label="描述">
+            <el-input v-model="form.describe"></el-input>
+          </el-form-item>
+          <el-form-item label="是否是兴趣">
             <el-checkbox v-model="form.isHobby"></el-checkbox>
           </el-form-item>
           <!--<el-form-item label="开始日期">-->
@@ -42,6 +45,14 @@
           <!--</el-date-picker>-->
           <!--</el-form-item>-->
         </el-form>
+        <el-upload
+          name="courseware"
+          :action="`${baseUrl}/api/postCourseware`"
+          :on-success="handleCoursewareSuccess"
+          :before-upload="beforeCoursewareUpload"
+          multiple>
+          <el-button size="small" type="primary">上传课件</el-button>
+        </el-upload>
       </div>
       <div class="type-content">
           <template v-for="(item, index) in data">
@@ -72,13 +83,25 @@ export default {
       form: {
         name: '',
         author: '',
+        describe: '',
         isHobby: false,
       },
       time: [],
       data: [],
     };
   },
+  computed: {
+    baseUrl() {
+      return window.config.baseUrl;
+    },
+  },
   methods: {
+    beforeCoursewareUpload() {
+    },
+    handleCoursewareSuccess(res) {
+      console.log(res);
+      this.$set(this.form, 'courseware', res);
+    },
     handleSelectButton(type) {
       const item = generate(type);
       item.sort = this.getCurrentNextSort();
