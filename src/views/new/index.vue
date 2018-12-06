@@ -85,6 +85,7 @@ export default {
         author: '',
         describe: '',
         isHobby: false,
+        coursewares: [],
       },
       time: [],
       data: [],
@@ -99,8 +100,14 @@ export default {
     beforeCoursewareUpload() {
     },
     handleCoursewareSuccess(res) {
-      console.log(res);
-      this.$set(this.form, 'courseware', res);
+      if (res.length) {
+        const file = {
+          path: res[0].filename,
+          name: res[0].originalname.split('.').shift(),
+        };
+        console.log(file);
+        this.form.coursewares.push(file);
+      }
     },
     handleSelectButton(type) {
       const item = generate(type);
