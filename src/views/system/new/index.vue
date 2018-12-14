@@ -6,45 +6,29 @@
       </div>
       <ul>
         <li class="type" @click="handleSelectButton('selection')">
-          <i class="icon duoxuan"></i>
+          <i class="iconfont icon-radio-checked"></i>
           <span class="name">单选题</span>
         </li>
         <li class="type" @click="handleSelectButton('checkBox')">
-          <i class="icon duoxuan"></i>
+          <i class="iconfont icon-danxuanfuxuan"></i>
           <span class="name">多选题</span>
         </li>
         <li class="type" @click="handleSelectButton('answer')">
-          <i class="icon duoxuan"></i>
+          <i class="iconfont icon-icon-"></i>
           <span class="name">主观题</span>
         </li>
       </ul>
     </div>
     <div class="right-side">
-      <div>
-        <el-form ref="form" :model="form" label-width="80px">
-          <el-form-item label="标题">
-            <el-input v-model="form.name"></el-input>
-          </el-form-item>
-          <el-form-item label="培训人">
-            <el-input v-model="form.author"></el-input>
-          </el-form-item>
-          <el-form-item label="描述">
-            <el-input v-model="form.describe"></el-input>
-          </el-form-item>
-          <el-form-item label="是否是兴趣">
-            <el-checkbox v-model="form.isHobby"></el-checkbox>
-          </el-form-item>
-          <!--<el-form-item label="开始日期">-->
-          <!--<el-date-picker-->
-          <!--v-model="time"-->
-          <!--type="datetimerange"-->
-          <!--range-separator="至"-->
-          <!--start-placeholder="开始日期"-->
-          <!--value-format="yyyy-MM-dd HH:mm:ss"-->
-          <!--end-placeholder="结束日期">-->
-          <!--</el-date-picker>-->
-          <!--</el-form-item>-->
-        </el-form>
+      <div class="form-header">
+        <el-input v-model="form.name"></el-input>
+        <el-input v-model="form.author"></el-input>
+        <el-input v-model="form.describe"></el-input>
+        <el-switch
+          v-model="form.isHobby"
+          active-color="#13ce66"
+          inactive-color="#ff4949">
+        </el-switch>
         <el-upload
           name="courseware"
           :action="`${baseUrl}/api/postCourseware`"
@@ -201,22 +185,26 @@ export default {
           color: $--color-text-primary;
         }
         .danxuan {
-          background: url("../../assets/images/danxuan.svg") no-repeat center center;
+          background: url("../../../assets/images/danxuan.svg") no-repeat center center;
         }
         .duoxuan {
-          background: url("../../assets/images/duoxuan.svg") no-repeat center center;
+          background: url("../../../assets/images/duoxuan.svg") no-repeat center center;
         }
       }
     }
     .right-side {
       position: relative;
       margin-top: 50px;
-      margin-left: 370px;
+      margin-left: 348px;
       padding: 30px 20px 70px;
-      min-height: 500px;
+      min-height: 810px;
       background: $--background-color-hover;
       border: $--border-base;
       box-shadow: $--box-shadow-base;
+      .form-header {
+        background: pink;
+        margin-bottom: 20px;
+      }
       .type-content {
         .type {
           border: $--border-base;

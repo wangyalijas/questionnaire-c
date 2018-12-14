@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import TableHelperMixin from '../../mixins/table_helper';
+import TableHelperMixin from '../../../mixins/table_helper';
 import QECode from './QRCode.vue';
 
 export default {
@@ -108,6 +108,6 @@ export default {
   .home {
     width: 1366px;
     margin: 50px auto;
-    min-height: 300px;
+    background: #ffffff;
   }
 </style>

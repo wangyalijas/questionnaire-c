@@ -1,0 +1,85 @@
+/*------------bem 规则------------------*/
+$elementSeparator: '__';
+$modifierSeparator: '--';
+$specificSeparator: '-';
+
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+  @if str-index($selector, $modifierSeparator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function selectorToString($selector) {
+  $selector: inspect($selector); //cast to string
+  $selector: str-slice($selector, 2, -2); //remove brackets
+  @return $selector;
+}
+
+@function getBlock($selector) {
+  $selector: selectorToString($selector);
+  $modifierStart: str-index($selector, $modifierSeparator) - 1;
+  @return str-slice($selector, 0, $modifierStart);
+}
+
+@mixin b($block) {
+  .#{$block} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $selector: &;
+  @if containsModifier($selector) {
+    $block: getBlock($selector);
+    @at-root {
+      #{$selector} {
+        #{$block+$elementSeparator+$element} {
+          @content;
+        }
+      }
+    }
+  } @else {
+    @at-root {
+      #{$selector+$elementSeparator+$element} {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin m($modifier) {
+  @at-root {
+    #{&}#{$modifierSeparator+$modifier} {
+      @content;
+    }
+  }
+}
+
+@mixin s($specific) {
+  @at-root {
+    #{&}#{$specificSeparator+$specific} {
+      @content;
+    }
+  }
+}
+
+/*------------公共css------------------*/
+
+// 水平垂直居中
+@mixin position-center($width, $height){
+  /* 传多个参数 */
+  width: $width;
+  height: $height;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: (-($height)/2) 0 0 (-($width)/2);
+}
+
+@mixin base-font($fontSize, $color){
+  font-size: $fontSize;
+  color: $color;
+}

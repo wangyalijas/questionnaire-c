@@ -9,22 +9,27 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home',
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('./views/home/index.vue'),
-    },
-    {
-      path: '/new',
-      name: 'new',
-      component: () => import('./views/new/index.vue'),
-    },
-    {
-      path: '/detail',
-      name: 'detail',
-      component: () => import('./views/detail/index.vue'),
+      name: 'login',
+      component: () => import('./views/login/index.vue'),
+      children: [
+        {
+          path: 'home',
+          name: 'home',
+          component: () => import('./views/system/home/index.vue'),
+          children: [
+            {
+              path: 'detail',
+              name: 'detail',
+              component: () => import('./views/system/detail/index.vue'),
+            },
+          ],
+        },
+        {
+          path: 'new',
+          name: 'new',
+          component: () => import('./views/system/new/index.vue'),
+        },
+      ],
     },
   ],
 });

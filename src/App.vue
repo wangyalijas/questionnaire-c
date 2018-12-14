@@ -1,21 +1,31 @@
 <template>
   <div id="app">
-    <TheNav></TheNav>
+    <!--<TheNav></TheNav>-->
     <router-view/>
   </div>
 </template>
 
 <script>
-import TheNav from './components/TheNav.vue';
 
 export default {
   components: {
-    TheNav,
   },
 };
 </script>
 <style lang="scss">
   body {
     background: $--background-color-regular;
+  }
+  html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  #app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
+    width: 100%;
+    height: 100%;
   }
 </style>
